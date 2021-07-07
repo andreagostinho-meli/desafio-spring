@@ -4,6 +4,7 @@ import br.com.meli.desafiospring.dto.user.UserDTO;
 import br.com.meli.desafiospring.dto.user.create.CreateUserRequestDTO;
 import br.com.meli.desafiospring.dto.user.getfollowers.GetFollowersResponseDTO;
 import br.com.meli.desafiospring.dto.user.getfollowersquantity.GetUserFollowersQuantityResponseDTO;
+import br.com.meli.desafiospring.dto.user.getfollowing.GetFollowingResponseDTO;
 import br.com.meli.desafiospring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,5 +46,11 @@ public class UserController {
     @ResponseBody
     public GetFollowersResponseDTO getUserFollowers(@PathVariable int userId) {
         return userService.getUserFollowers(userId);
+    }
+
+    @GetMapping("/users/{userId}/followed/list")
+    @ResponseBody
+    public GetFollowingResponseDTO getUserFollowing(@PathVariable int userId) {
+        return userService.getUserFollowing(userId);
     }
 }

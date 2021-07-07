@@ -4,6 +4,7 @@ import br.com.meli.desafiospring.dto.user.UserDTO;
 import br.com.meli.desafiospring.dto.user.create.CreateUserRequestDTO;
 import br.com.meli.desafiospring.dto.user.getfollowers.GetFollowersResponseDTO;
 import br.com.meli.desafiospring.dto.user.getfollowersquantity.GetUserFollowersQuantityResponseDTO;
+import br.com.meli.desafiospring.dto.user.getfollowing.GetFollowingResponseDTO;
 import br.com.meli.desafiospring.entities.User;
 import br.com.meli.desafiospring.exceptions.FollowerNotFoundException;
 import br.com.meli.desafiospring.exceptions.SameUserFollowException;
@@ -78,6 +79,17 @@ public class UserService {
                                     .collect(Collectors.toList());
 
         return new GetFollowersResponseDTO(user.getId(), user.getName(), followers);
+    }
+
+    public GetFollowingResponseDTO getUserFollowing(int id) {
+        User user = userRepository.findById(id);
+        checkIfUserExists(user);
+
+        List<UserDTO> following = user.getFollowing().stream()
+                .map(followedUser -> new UserDTO(followedUser.getId(), followedUser.getName()))
+                .collect(Collectors.toList());
+
+        return new GetFollowingResponseDTO(user.getId(), user.getName(), following);
     }
 
     private void checkIfUserExists(User user) {
