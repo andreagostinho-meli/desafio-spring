@@ -2,6 +2,7 @@ package br.com.meli.desafiospring.services;
 
 import br.com.meli.desafiospring.dto.user.create.CreateUserRequestDTO;
 import br.com.meli.desafiospring.dto.user.create.CreateUserResponseDTO;
+import br.com.meli.desafiospring.dto.user.getfollowersquantity.GetUserFollowersQuantityResponseDTO;
 import br.com.meli.desafiospring.entities.User;
 import br.com.meli.desafiospring.exceptions.FollowerNotFoundException;
 import br.com.meli.desafiospring.exceptions.SameUserFollowException;
@@ -57,6 +58,13 @@ public class UserService {
         if(!userToUnfollow.getFollowers().contains(user)) throw new FollowerNotFoundException();
 
         userRepository.removeFollower(user, userToUnfollow);
+    }
+
+    public GetUserFollowersQuantityResponseDTO countUserFollowers(int id) {
+        User user = userRepository.findById(id);
+        checkIfUserExists(user);
+
+        return new GetUserFollowersQuantityResponseDTO(id, user.getName(), user.getFollowers().size());
     }
 
     private void checkIfUserExists(User user) {
