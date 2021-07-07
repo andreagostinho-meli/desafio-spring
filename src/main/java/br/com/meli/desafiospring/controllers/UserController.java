@@ -2,6 +2,7 @@ package br.com.meli.desafiospring.controllers;
 
 import br.com.meli.desafiospring.dto.user.create.CreateUserRequestDTO;
 import br.com.meli.desafiospring.dto.user.create.CreateUserResponseDTO;
+import br.com.meli.desafiospring.dto.user.getfollowers.GetFollowersResponseDTO;
 import br.com.meli.desafiospring.dto.user.getfollowersquantity.GetUserFollowersQuantityResponseDTO;
 import br.com.meli.desafiospring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,11 @@ public class UserController {
     @ResponseBody
     public GetUserFollowersQuantityResponseDTO getUserFollowersQuantity(@PathVariable int userId) {
         return userService.countUserFollowers(userId);
+    }
+
+    @GetMapping("/users/{userId}/followers/list")
+    @ResponseBody
+    public GetFollowersResponseDTO getUserFollowers(@PathVariable int userId) {
+        return userService.getUserFollowers(userId);
     }
 }
