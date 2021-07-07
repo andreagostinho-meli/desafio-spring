@@ -1,7 +1,7 @@
 package br.com.meli.desafiospring.controllers;
 
+import br.com.meli.desafiospring.dto.user.UserDTO;
 import br.com.meli.desafiospring.dto.user.create.CreateUserRequestDTO;
-import br.com.meli.desafiospring.dto.user.create.CreateUserResponseDTO;
 import br.com.meli.desafiospring.dto.user.getfollowers.GetFollowersResponseDTO;
 import br.com.meli.desafiospring.dto.user.getfollowersquantity.GetUserFollowersQuantityResponseDTO;
 import br.com.meli.desafiospring.services.UserService;
@@ -21,7 +21,7 @@ public class UserController {
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public CreateUserResponseDTO create(@Valid @RequestBody CreateUserRequestDTO createUserRequestDTO) {
+    public UserDTO create(@Valid @RequestBody CreateUserRequestDTO createUserRequestDTO) {
         return userService.create(createUserRequestDTO);
     }
 

@@ -2,7 +2,6 @@ package br.com.meli.desafiospring.services;
 
 import br.com.meli.desafiospring.dto.user.UserDTO;
 import br.com.meli.desafiospring.dto.user.create.CreateUserRequestDTO;
-import br.com.meli.desafiospring.dto.user.create.CreateUserResponseDTO;
 import br.com.meli.desafiospring.dto.user.getfollowers.GetFollowersResponseDTO;
 import br.com.meli.desafiospring.dto.user.getfollowersquantity.GetUserFollowersQuantityResponseDTO;
 import br.com.meli.desafiospring.entities.User;
@@ -26,13 +25,13 @@ public class UserService {
 
     private int id = 1;
 
-    public CreateUserResponseDTO create(CreateUserRequestDTO createUserRequestDTO) {
+    public UserDTO create(CreateUserRequestDTO createUserRequestDTO) {
         User user = new User(id, createUserRequestDTO.getName(), new ArrayList<>(), new ArrayList<>());
         id++;
 
         userRepository.add(user);
 
-        return new CreateUserResponseDTO(user.getId(), user.getName());
+        return new UserDTO(user.getId(), user.getName());
     }
 
     public void followUser(int userId, int userIdToFollow) {
