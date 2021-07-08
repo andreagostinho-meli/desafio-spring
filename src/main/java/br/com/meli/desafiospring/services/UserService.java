@@ -92,6 +92,13 @@ public class UserService {
         return new GetFollowingResponseDTO(user.getId(), user.getName(), following);
     }
 
+    public UserDTO findById(int id) {
+        User user = userRepository.findById(id);
+        checkIfUserExists(user);
+
+        return new UserDTO(user.getId(), user.getName());
+    }
+
     private void checkIfUserExists(User user) {
         if(user == null) throw new UserNotFoundException();
     }

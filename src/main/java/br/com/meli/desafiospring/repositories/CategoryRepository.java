@@ -13,4 +13,8 @@ public class CategoryRepository {
     public void add(Category category) {
         categories.add(category);
     }
+
+    public Category findById(int id) {
+        return categories.stream().filter(category -> category.getId() == id).findFirst().orElse(null);
+    }
 }

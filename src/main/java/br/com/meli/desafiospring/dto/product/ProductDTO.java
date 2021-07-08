@@ -1,42 +1,51 @@
-package br.com.meli.desafiospring.entities;
+package br.com.meli.desafiospring.dto.product;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-public class Product {
-    private int id;
-    private String name;
+public class ProductDTO {
+    @NotNull
+    private int product_id;
+
+    @NotBlank
+    private String productName;
+
+    @NotBlank
     private String type;
+
+    @NotBlank
     private String brand;
+
+    @NotBlank
     private String color;
+
+    @NotBlank
     private String notes;
-    private int categoryId;
+
+    @NotNull
+    private int category;
+
+    @NotNull
     private BigDecimal price;
 
-    public Product(int id, String name, String type, String brand, String color, String notes, int categoryId, BigDecimal price) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.brand = brand;
-        this.color = color;
-        this.notes = notes;
-        this.categoryId = categoryId;
-        this.price = price;
+    public ProductDTO() {
     }
 
-    public int getId() {
-        return id;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getType() {
@@ -71,12 +80,12 @@ public class Product {
         this.notes = notes;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(int category) {
+        this.category = category;
     }
 
     public BigDecimal getPrice() {

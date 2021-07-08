@@ -61,4 +61,27 @@ public class Advisor extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<Object> handleCategoryNotFoundException(CategoryNotFoundException exception) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", exception.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(PostAlreadyExistsException.class)
+    public ResponseEntity<Object> handlePostAlreadyExistsException(PostAlreadyExistsException exception) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", exception.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(ProductAlreadyExistsException.class)
+    public ResponseEntity<Object> handleProductAlreadyExistsException(ProductAlreadyExistsException exception) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", exception.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
 }
