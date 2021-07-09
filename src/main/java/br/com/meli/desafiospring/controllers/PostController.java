@@ -24,7 +24,7 @@ public class PostController {
     @Autowired
     private UserService userService;
 
-     PostDateComparator postDateComparator = new PostDateComparator();
+    private PostDateComparator postDateComparator = new PostDateComparator();
 
     @PostMapping("/products/newpost")
     @ResponseStatus(HttpStatus.CREATED)
