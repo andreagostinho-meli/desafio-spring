@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class PostRepository {
@@ -16,5 +17,9 @@ public class PostRepository {
 
     public Post findById(int id) {
         return posts.stream().filter(post -> post.getId() == id).findFirst().orElse(null);
+    }
+
+    public List<Post> findUserPosts(int userId) {
+        return posts.stream().filter(post -> post.getUserId() == userId).collect(Collectors.toList());
     }
 }
