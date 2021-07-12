@@ -6,10 +6,7 @@ import br.com.meli.desafiospring.dto.user.getfollowers.GetFollowersResponseDTO;
 import br.com.meli.desafiospring.dto.user.getfollowersquantity.GetUserFollowersQuantityResponseDTO;
 import br.com.meli.desafiospring.dto.user.getfollowing.GetFollowingResponseDTO;
 import br.com.meli.desafiospring.entities.User;
-import br.com.meli.desafiospring.exceptions.FollowerNotFoundException;
-import br.com.meli.desafiospring.exceptions.SameUserFollowException;
-import br.com.meli.desafiospring.exceptions.UserIsAlreadyFollowerException;
-import br.com.meli.desafiospring.exceptions.UserNotFoundException;
+import br.com.meli.desafiospring.exceptions.*;
 import br.com.meli.desafiospring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +24,7 @@ public class UserService {
     private int id = 1;
 
     public UserDTO create(CreateUserRequestDTO createUserRequestDTO) {
-        User user = new User(id, createUserRequestDTO.getName(), new ArrayList<>(), new ArrayList<>());
+        User user = new User(id, createUserRequestDTO.getName(), createUserRequestDTO.isSeller(), new ArrayList<>(), new ArrayList<>());
         id++;
 
         userRepository.add(user);
@@ -43,6 +40,7 @@ public class UserService {
 
         User userToFollow = userRepository.findById(userIdToFollow);
         checkIfUserExists(userToFollow);
+        checkIfUserIsNotSeller(userToFollow);
 
         if(userToFollow.getFollowers().contains(user)) throw new UserIsAlreadyFollowerException();
 
@@ -105,6 +103,10 @@ public class UserService {
 
     private void checkIfUserIdsAreEqual(int id1, int id2) {
         if(id1 == id2) throw new SameUserFollowException();
+    }
+
+    private void checkIfUserIsNotSeller(User user) {
+        if(!user.isSeller()) throw new FollowUserException();
     }
 
 }

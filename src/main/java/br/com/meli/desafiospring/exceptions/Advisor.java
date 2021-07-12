@@ -84,4 +84,12 @@ public class Advisor extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
     }
+
+    @ExceptionHandler(FollowUserException.class)
+    public ResponseEntity<Object> handleFollowUserException(FollowUserException exception) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", exception.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
+    }
 }

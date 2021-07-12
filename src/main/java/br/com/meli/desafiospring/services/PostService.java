@@ -1,7 +1,6 @@
 package br.com.meli.desafiospring.services;
 
 import br.com.meli.desafiospring.dto.post.create.CreatePostRequestDTO;
-import br.com.meli.desafiospring.dto.post.getpostsfromfollowedusers.GetPostsFromFollowedUsersResponseDTO;
 import br.com.meli.desafiospring.dto.post.getpostsfromfollowedusers.PostFromFollowedUserDTO;
 import br.com.meli.desafiospring.dto.post.getpostsfromfollowedusers.ProductFromPostDTO;
 import br.com.meli.desafiospring.dto.product.ProductDTO;

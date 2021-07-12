@@ -6,6 +6,8 @@ public class CreateUserRequestDTO {
     @NotBlank
     private String name;
 
+    private boolean seller;
+
     public CreateUserRequestDTO() {
     }
 
@@ -15,5 +17,13 @@ public class CreateUserRequestDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isSeller() {
+        return seller;
+    }
+
+    public void setSeller(boolean seller) {
+        this.seller = seller;
     }
 }
